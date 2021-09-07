@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import generateMessage, { Message } from './Api';
+
+import MessageTable from './components/MessageTable';
 
 const App: React.FC<{}> = () => {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -13,9 +14,7 @@ const App: React.FC<{}> = () => {
   }, [setMessages]);
 
   return (
-    <div>
-      {messages?.map?.(msg => <div key={msg?.message}>{msg?.message}</div>)}
-    </div>
+    <MessageTable messages={messages} setMessages={setMessages}/>
   );
 }
 
