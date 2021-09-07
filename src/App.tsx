@@ -46,7 +46,7 @@ const App: React.FC<{}> = () => {
       <Snackbar
         anchorOrigin={{
           vertical: 'top',
-          horizontal: 'left',
+          horizontal: 'right',
         }}
         open={snackBar !== ''}
         autoHideDuration={2000}
