@@ -1,5 +1,5 @@
 import { Message } from '../Api'
-import { OrganizedMessage } from '../interfaces'
+import { OrganizedMessage } from '../types'
 
 export const OrgnanizeMessages = (messages: Message[]): OrganizedMessage => {
     const ErrorMessages: {message: Message, originalIdx: number}[] = []

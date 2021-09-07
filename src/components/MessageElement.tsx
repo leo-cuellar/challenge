@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Message } from '../Api'
-import { OrganizedMessage } from '../interfaces'
 
 const TableColumnMessageContainer = styled.div<{ priority: number }>`
     padding: 15px;
