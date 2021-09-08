@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import generateMessage, { Message } from './Api'
-import Button from '@material-ui/core/Button'
 import Snackbar from '@material-ui/core/Snackbar'
 import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close';
 
 import MessageTable from './components/MessageTable'
 import UserControls from './components/UserControls'
+
+import messageContext from './context/messageContext'
 
 const AppContainer = styled.div`
   display: flex;
@@ -42,27 +43,32 @@ const App: React.FC<{}> = () => {
   }, [setMessages, running])
 
   return (
-    <AppContainer>
-      <Snackbar
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        open={snackBar !== ''}
-        autoHideDuration={2000}
-        onClose={handleSnackBarClose}
-        message={snackBar}
-        action={
-          <React.Fragment>
-            <IconButton aria-label="close" color="inherit" onClick={handleSnackBarClose}>
-              <CloseIcon fontSize="small" />
-            </IconButton>
-          </React.Fragment>
-        }
-      />
-      <UserControls setMessages={setMessages} running={running} setRunning={setRunning} />
-      <MessageTable messages={messages} setMessages={setMessages} />
-    </AppContainer>
+    <messageContext.Provider value={{
+      messages,
+      setMessages
+    }}>
+      <AppContainer>
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          open={snackBar !== ''}
+          autoHideDuration={2000}
+          onClose={handleSnackBarClose}
+          message={snackBar}
+          action={
+            <React.Fragment>
+              <IconButton aria-label="close" color="inherit" onClick={handleSnackBarClose}>
+                <CloseIcon fontSize="small" />
+              </IconButton>
+            </React.Fragment>
+          }
+        />
+        <UserControls running={running} setRunning={setRunning} />
+        <MessageTable />
+      </AppContainer>
+    </messageContext.Provider>
   )
 }
 

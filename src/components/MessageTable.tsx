@@ -6,6 +6,8 @@ import { OrgnanizeMessages } from '../helpers/OrganizeMessages';
 
 import MessageElement from './MessageElement';
 
+import { useMessageContext } from '../context/messageContext';
+
 const TableContainer = styled.div`
     width: 100%;
     height: 500px;
@@ -26,7 +28,9 @@ const TableColumnSubtitle = styled.p`
     margin-bottom: 10px;
 `
 
-const MessageTable: React.FC<{ messages: Message[], setMessages: React.Dispatch<React.SetStateAction<Message[]>> }> = ({ messages, setMessages }) => {
+const MessageTable: React.FC<{}> = () => {
+
+    const { messages } = useMessageContext() as any
 
     const OrganizedMessages: OrganizedMessage = OrgnanizeMessages(messages)
 
@@ -39,7 +43,7 @@ const MessageTable: React.FC<{ messages: Message[], setMessages: React.Dispatch<
                 <TableColumnSubtitle>
                     Count {OrganizedMessages.ErrorMessages.length}
                 </TableColumnSubtitle>
-                <MessageElement messages={messages} OrganizedMessages={OrganizedMessages.ErrorMessages} setMessages={setMessages} />
+                <MessageElement OrganizedMessages={OrganizedMessages.ErrorMessages} />
             </TableColumn>
             <TableColumn>
                 <TableColumnTitle>
@@ -50,9 +54,7 @@ const MessageTable: React.FC<{ messages: Message[], setMessages: React.Dispatch<
                 </TableColumnSubtitle>
                 <MessageElement
                     data-testid='warn-messages'
-                    messages={messages}
                     OrganizedMessages={OrganizedMessages.WarnMessages}
-                    setMessages={setMessages}
                 />
             </TableColumn>
             <TableColumn>
@@ -62,7 +64,7 @@ const MessageTable: React.FC<{ messages: Message[], setMessages: React.Dispatch<
                 <TableColumnSubtitle>
                     Count {OrganizedMessages.InfoMessages.length}
                 </TableColumnSubtitle>
-                <MessageElement messages={messages} OrganizedMessages={OrganizedMessages.InfoMessages} setMessages={setMessages} />
+                <MessageElement OrganizedMessages={OrganizedMessages.InfoMessages} />
             </TableColumn>
         </TableContainer>
     )

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Message } from '../Api'
+import { useMessageContext } from '../context/messageContext'
 
 const TableColumnMessageContainer = styled.div<{ priority: number }>`
     padding: 15px;
@@ -26,10 +27,13 @@ const ClearButton = styled.button`
 `
 
 const MessageElement: React.FC<{
-    messages: Message[],
     OrganizedMessages: { message: Message, originalIdx: number }[],
-    setMessages: React.Dispatch<React.SetStateAction<Message[]>>
-}> = ({ messages, OrganizedMessages, setMessages }) => {
+}> = ({ OrganizedMessages }) => {
+
+    const {
+        messages,
+        setMessages
+    } = useMessageContext() as any
 
     const HandleClear = (idx: number) => {
         const newMessages = [...messages]

@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { Message } from '../Api'
 
+import { useMessageContext } from '../context/messageContext'
+
 const ControlsContainer = styled.div`
     width: 165px;
     margin: 25px 0;
@@ -20,10 +22,11 @@ const Control = styled.button`
 `
 
 const UserControls: React.FC<{
-    setMessages: React.Dispatch<React.SetStateAction<Message[]>>,
     running: boolean,
     setRunning: React.Dispatch<React.SetStateAction<boolean>>
-}> = ({ setMessages, running, setRunning }) => {
+}> = ({ running, setRunning }) => {
+
+    const { setMessages } = useMessageContext() as any
 
     const handleToggle = () => {
         setRunning(!running)
