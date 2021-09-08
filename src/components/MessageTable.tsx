@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Message } from '../Api';
 import { OrganizedMessage } from '../types';
 import { OrgnanizeMessages } from '../helpers/OrganizeMessages';
 

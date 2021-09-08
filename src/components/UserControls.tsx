@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Message } from '../Api'
 
 import { useMessageContext } from '../context/messageContext'
 
