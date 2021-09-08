@@ -35,10 +35,16 @@ const UserControls: React.FC<{
 
     return (
         <ControlsContainer>
-            <Control onClick={handleToggle}>
+            <Control
+                data-testid='toggle-button'
+                onClick={handleToggle}
+            >
                 {running ? 'STOP' : 'START'}
             </Control>
-            <Control onClick={handleClear}>
+            <Control
+                data-testid='clear-button'
+                onClick={handleClear}
+            >
                 CLEAR
             </Control>
         </ControlsContainer>

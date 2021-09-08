@@ -48,7 +48,12 @@ const MessageTable: React.FC<{ messages: Message[], setMessages: React.Dispatch<
                 <TableColumnSubtitle>
                     Count {OrganizedMessages.WarnMessages.length}
                 </TableColumnSubtitle>
-                <MessageElement messages={messages} OrganizedMessages={OrganizedMessages.WarnMessages} setMessages={setMessages} />
+                <MessageElement
+                    data-testid='warn-messages'
+                    messages={messages}
+                    OrganizedMessages={OrganizedMessages.WarnMessages}
+                    setMessages={setMessages}
+                />
             </TableColumn>
             <TableColumn>
                 <TableColumnTitle>

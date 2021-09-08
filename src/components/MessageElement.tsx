@@ -27,7 +27,7 @@ const ClearButton = styled.button`
 
 const MessageElement: React.FC<{
     messages: Message[],
-    OrganizedMessages: {message: Message, originalIdx: number}[],
+    OrganizedMessages: { message: Message, originalIdx: number }[],
     setMessages: React.Dispatch<React.SetStateAction<Message[]>>
 }> = ({ messages, OrganizedMessages, setMessages }) => {
 
@@ -41,11 +41,13 @@ const MessageElement: React.FC<{
         <>
             {[...OrganizedMessages].reverse().map(({ message: { message, priority }, originalIdx }, idx) => (
                 <TableColumnMessageContainer
+                    data-testid='message-container'
                     key={message + idx}
                     priority={priority}
                 >
                     {message}
                     <ClearButton
+                        data-testid='message-clear-button'
                         onClick={() => HandleClear(originalIdx)}
                     >
                         Clear
